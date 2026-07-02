@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ambre | Malt & Bacon (Valenciennes)</title>
+    <style>
+        :root {
+            --primary: #e63946; /* Rouge Pin-up */
+            --amber: #ffb703; /* Couleur Bière */
+            --dark: #121212;
+            --light: #f8f9fa;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        body { background-color: var(--dark); color: var(--light); text-align: center; overflow-x: hidden; }
+        
+        /* Hero Section */
+        header {
+            padding: 80px 20px;
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(18,18,18,1)), url('https://images.unsplash.com/photo-1514933651103-005eec06c04b?q=80&w=1000') center/cover;
+            min-height: 80vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .avatar-container {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            border: 4px solid var(--primary);
+            overflow: hidden;
+            margin-bottom: 20px;
+            box-shadow: 0 0 20px var(--primary);
+        }
+        .avatar-container img { width: 100%; height: 100%; object-fit: cover; }
+        h1 { font-size: 3rem; color: #fff; text-transform: uppercase; letter-spacing: 2px; }
+        h1 span { color: var(--primary); }
+        .location { color: var(--amber); font-weight: bold; font-size: 1.2rem; margin-top: 5px; }
+        .bio { max-width: 600px; margin: 20px auto; font-size: 1.1rem; line-height: 1.6; color: #ccc; }
+        
+        /* Boutons */
+        .cta-btn {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 15px 35px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-top: 20px;
+            transition: 0.3s ease;
+            box-shadow: 0 5px 15px rgba(230, 57, 70, 0.4);
+        }
+        .cta-btn:hover { transform: scale(1.05); background: #c32f3a; }
+
+        /* Feed Expérimental */
+        .feed-section { padding: 60px 20px; max-width: 1000px; margin: 0 auto; }
+        h2 { font-size: 2rem; margin-bottom: 40px; border-bottom: 2px solid var(--primary); display: inline-block; padding-bottom: 10px; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+        .post { background: #1e1e1e; border-radius: 12px; overflow: hidden; border: 1px solid #333; transition: 0.3s; }
+        .post:hover { border-color: var(--amber); transform: translateY(-5px); }
+        .post img { width: 100%; height: 300px; object-fit: cover; }
+        .post-content { padding: 15px; text-align: left; }
+        .post-tag { background: var(--amber); color: #000; font-size: 0.8rem; font-weight: bold; padding: 3px 8px; border-radius: 4px; }
+        .post-title { font-size: 1.1rem; margin: 10px 0 5px 0; font-weight: bold; }
+        .post-stats { color: #888; font-size: 0.9rem; margin-top: 10px; }
+
+        /* Footer */
+        footer { padding: 40px; background: #0b0b0b; color: #666; font-size: 0.9rem; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="avatar-container">
+            <!-- REMPLACE CE LIEN PAR LA PHOTO DE TON IA PLUS TARD -->
+            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=500" alt="Ambre IA">
+        </div>
+        <h1>Ambre <span>• 59</span></h1>
+        <p class="location">📍 Valenciennes, Hauts-de-France</p>
+        <p class="bio">Épicurienne virtuelle. Je teste le combo ultime : les meilleures chips/tortillas au bacon de la région et les bières 0.0% les plus fraîches. Qui a dit qu'on avait besoin d'alcool pour s'enflammer ? 🍻🥓</p>
+        <a href="mailto:contact@tonprojet.com" class="cta-btn">🔥 Me Proposer une Collab</a>
+    </header>
+
+    <section class="feed-section">
+        <h2>Mes Derniers Crash-Tests</h2>
+        <div class="grid">
+            <!-- Post 1 -->
+            <div class="post">
+                <img src="https://images.unsplash.com/photo-1566633806327-68e152aaf26d?q=80&w=500" alt="Bière 0%">
+                <div class="post-content">
+                    <span class="post-tag">🍺 Bière Sans Alcool</span>
+                    <div class="post-title">La Blonde des Flandres 0.0% : Un grand OUI ?</div>
+                    <p class="post-stats">❤️ 4,231 • 💬 248</p>
+                </div>
+            </div>
+            <!-- Post 2 -->
+            <div class="post">
+                <img src="https://images.unsplash.com/photo-1600952841320-db92ec4047ca?q=80&w=500" alt="Chips Bacon">
+                <div class="post-content">
+                    <span class="post-tag">🥓 Tortillas & Chips</span>
+                    <div class="post-title">Bacon fumé & Épices : Le croustillant parfait.</div>
+                    <p class="post-stats">❤️ 5,892 • 💬 412</p>
+                </div>
+            </div>
+            <!-- Post 3 -->
+            <div class="post">
+                <img src="https://images.unsplash.com/photo-1543007630-9710e4a00a20?q=80&w=500" alt="Apéro Valenciennes">
+                <div class="post-content">
+                    <span class="post-tag">📸 En Direct de Valenciennes</span>
+                    <div class="post-title">Session shooting au coucher de soleil... avec mon paquet de chips.</div>
+                    <p class="post-stats">❤️ 7,105 • 💬 619</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Ambre_59 - Influenceuse Virtuelle Expérimentale. Tous droits réservés.</p>
+    </footer>
+
+</body>
+</html>
