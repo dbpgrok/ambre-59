@@ -1,29 +1,50 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Ambre | Partage d'actualités sur la situation en France</title>
     <style>
         :root {
-            --primary: #e63946; /* Rouge Pin-up */
-            --amber: #ffb703; /* Couleur Bière */
+            --primary: #e63946;
+            --amber: #ffb703;
             --dark: #121212;
             --light: #f8f9fa;
+            --editor-text: #ffd166;
+            --editor-image: #4cc9f0;
+            --editor-bg: #ff006e;
+            --editor-link: #72efdd;
+            --editor-title: #b8f2e6;
+            --editor-panel: rgba(10, 10, 10, 0.94);
         }
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
-        body { background-color: var(--dark); color: var(--light); text-align: center; overflow-x: hidden; }
-        
-        /* Hero Section */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--dark);
+            color: var(--light);
+            text-align: center;
+            overflow-x: hidden;
+        }
+
         header {
             padding: 80px 20px;
-            background: linear-gradient(rgba(0,0,0,0.6), rgba(18,18,18,1)), url('https://images.unsplash.com/photo-1514933651103-005eec06c04b?q=80&w=1000') center/cover;
+            background:
+                linear-gradient(rgba(0,0,0,0.6), rgba(18,18,18,1)),
+                url('https://images.unsplash.com/photo-1514933651103-005eec06c04b?q=80&w=1000') center/cover;
             min-height: 80vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
+            position: relative;
         }
+
         .avatar-container {
             width: 180px;
             height: 180px;
@@ -33,13 +54,39 @@
             margin-bottom: 20px;
             box-shadow: 0 0 20px var(--primary);
         }
-        .avatar-container img { width: 100%; height: 100%; object-fit: cover; }
-        h1 { font-size: 3rem; color: #fff; text-transform: uppercase; letter-spacing: 2px; }
-        h1 span { color: var(--primary); }
-        .location { color: var(--amber); font-weight: bold; font-size: 1.2rem; margin-top: 5px; }
-        .bio { max-width: 600px; margin: 20px auto; font-size: 1.1rem; line-height: 1.6; color: #ccc; }
-        
-        /* Boutons */
+
+        .avatar-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        h1 {
+            font-size: 3rem;
+            color: #fff;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        h1 span {
+            color: var(--primary);
+        }
+
+        .location {
+            color: var(--amber);
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-top: 5px;
+        }
+
+        .bio {
+            max-width: 600px;
+            margin: 20px auto;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #ccc;
+        }
+
         .cta-btn {
             display: inline-block;
             background: var(--primary);
@@ -53,73 +100,661 @@
             transition: 0.3s ease;
             box-shadow: 0 5px 15px rgba(230, 57, 70, 0.4);
         }
-        .cta-btn:hover { transform: scale(1.05); background: #c32f3a; }
 
-        /* Feed Expérimental */
-        .feed-section { padding: 60px 20px; max-width: 1000px; margin: 0 auto; }
-        h2 { font-size: 2rem; margin-bottom: 40px; border-bottom: 2px solid var(--primary); display: inline-block; padding-bottom: 10px; }
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
-        .post { background: #1e1e1e; border-radius: 12px; overflow: hidden; border: 1px solid #333; transition: 0.3s; }
-        .post:hover { border-color: var(--amber); transform: translateY(-5px); }
-        .post img { width: 100%; height: 300px; object-fit: cover; }
-        .post-content { padding: 15px; text-align: left; }
-        .post-tag { background: var(--amber); color: #000; font-size: 0.8rem; font-weight: bold; padding: 3px 8px; border-radius: 4px; }
-        .post-title { font-size: 1.1rem; margin: 10px 0 5px 0; font-weight: bold; }
-        .post-stats { color: #888; font-size: 0.9rem; margin-top: 10px; }
+        .cta-btn:hover {
+            transform: scale(1.05);
+            background: #c32f3a;
+        }
 
-        /* Footer */
-        footer { padding: 40px; background: #0b0b0b; color: #666; font-size: 0.9rem; }
+        .feed-section {
+            padding: 60px 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        h2 {
+            font-size: 2rem;
+            margin-bottom: 40px;
+            border-bottom: 2px solid var(--primary);
+            display: inline-block;
+            padding-bottom: 10px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .post {
+            background: #1e1e1e;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid #333;
+            transition: 0.3s;
+        }
+
+        .post:hover {
+            border-color: var(--amber);
+            transform: translateY(-5px);
+        }
+
+        .post img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+        }
+
+        .post-content {
+            padding: 15px;
+            text-align: left;
+        }
+
+        .post-tag {
+            background: var(--amber);
+            color: #000;
+            font-size: 0.8rem;
+            font-weight: bold;
+            padding: 3px 8px;
+            border-radius: 4px;
+        }
+
+        .post-title {
+            font-size: 1.1rem;
+            margin: 10px 0 5px 0;
+            font-weight: bold;
+        }
+
+        .post-stats {
+            color: #888;
+            font-size: 0.9rem;
+            margin-top: 10px;
+        }
+
+        footer {
+            padding: 40px;
+            background: #0b0b0b;
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .editor-toolbar {
+            position: fixed;
+            top: 16px;
+            right: 16px;
+            z-index: 99999;
+            width: min(390px, calc(100vw - 24px));
+            background: var(--editor-panel);
+            color: white;
+            border: 1px solid rgba(255,255,255,0.15);
+            border-radius: 16px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.45);
+            backdrop-filter: blur(10px);
+            text-align: left;
+            overflow: hidden;
+        }
+
+        .editor-toolbar-header {
+            padding: 14px 16px 10px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .editor-toolbar-header h3 {
+            font-size: 1rem;
+            margin-bottom: 6px;
+        }
+
+        .editor-toolbar-header p {
+            font-size: 0.85rem;
+            color: #cccccc;
+            line-height: 1.4;
+        }
+
+        .editor-toolbar-body {
+            padding: 14px 16px 16px;
+            display: grid;
+            gap: 10px;
+        }
+
+        .editor-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .editor-btn {
+            border: none;
+            border-radius: 10px;
+            padding: 10px 12px;
+            font-size: 0.92rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.2s ease;
+        }
+
+        .editor-btn-primary {
+            background: var(--amber);
+            color: #111;
+        }
+
+        .editor-btn-secondary {
+            background: #2d2d2d;
+            color: #fff;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .editor-btn-danger {
+            background: #b5179e;
+            color: #fff;
+        }
+
+        .editor-btn-success {
+            background: #2a9d8f;
+            color: #fff;
+        }
+
+        .editor-btn:hover {
+            transform: translateY(-1px);
+            opacity: 0.95;
+        }
+
+        .editor-legend {
+            display: grid;
+            gap: 6px;
+            font-size: 0.86rem;
+            color: #ddd;
+        }
+
+        .editor-legend span {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .editor-dot {
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        .editor-output {
+            width: 100%;
+            min-height: 120px;
+            resize: vertical;
+            border-radius: 10px;
+            border: 1px solid rgba(255,255,255,0.12);
+            background: #111;
+            color: #fff;
+            padding: 10px;
+            font-size: 0.85rem;
+        }
+
+        .editable-zone {
+            position: relative;
+        }
+
+        .edit-mode [data-edit-type="text"] {
+            outline: 3px dashed var(--editor-text);
+            outline-offset: 4px;
+            cursor: text;
+        }
+
+        .edit-mode [data-edit-type="image"] {
+            outline: 3px dashed var(--editor-image);
+            outline-offset: 4px;
+            cursor: pointer;
+        }
+
+        .edit-mode [data-edit-type="background"] {
+            outline: 3px dashed var(--editor-bg);
+            outline-offset: 6px;
+            cursor: pointer;
+        }
+
+        .edit-mode [data-edit-type="link"] {
+            outline: 3px dashed var(--editor-link);
+            outline-offset: 4px;
+            cursor: pointer;
+        }
+
+        .edit-mode [data-edit-type="document-title"] {
+            outline: 3px dashed var(--editor-title);
+            outline-offset: 4px;
+            cursor: pointer;
+        }
+
+        .edit-mode [data-edit-label]::after {
+            content: attr(data-edit-label);
+            position: absolute;
+            top: -12px;
+            left: 8px;
+            background: #000;
+            color: #fff;
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 4px 8px;
+            border-radius: 999px;
+            z-index: 9999;
+            white-space: nowrap;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.35);
+            pointer-events: none;
+        }
+
+        .edit-mode .image-wrapper-editable,
+        .edit-mode .background-wrapper-editable,
+        .edit-mode .link-wrapper-editable,
+        .edit-mode .title-wrapper-editable {
+            position: relative;
+        }
+
+        .edit-mode .image-wrapper-editable::after,
+        .edit-mode .background-wrapper-editable::after,
+        .edit-mode .link-wrapper-editable::after,
+        .edit-mode .title-wrapper-editable::after {
+            content: attr(data-edit-label);
+            position: absolute;
+            top: 8px;
+            left: 8px;
+            background: rgba(0, 0, 0, 0.86);
+            color: white;
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 5px 8px;
+            border-radius: 999px;
+            z-index: 10;
+            pointer-events: none;
+        }
+
+        .editor-help {
+            font-size: 0.8rem;
+            color: #bbb;
+            line-height: 1.45;
+        }
+
+        .editor-status {
+            font-size: 0.82rem;
+            color: #9ad1d4;
+            min-height: 18px;
+        }
+
+        @media (max-width: 768px) {
+            .editor-toolbar {
+                left: 12px;
+                right: 12px;
+                top: auto;
+                bottom: 12px;
+                width: auto;
+            }
+
+            h1 {
+                font-size: 2.2rem;
+            }
+
+            .bio {
+                font-size: 1rem;
+            }
+        }
     </style>
 </head>
 <body>
 
-    <header>
-        <div class="avatar-container">
-            <!-- REMPLACE CE LIEN PAR LA PHOTO DE TON IA PLUS TARD -->
-            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=500" alt="Ambre IA">
+    <div class="editor-toolbar" aria-label="Outils d'édition visuelle">
+        <div class="editor-toolbar-header">
+            <h3>Éditeur visuel avancé</h3>
+            <p>Modifie les textes, images, fond, titre du document, lien mailto et attributs alt sans toucher au code source à la main.</p>
         </div>
-        <h1>Ambre <span>• 59</span></h1>
-        <p class="location">📍 Maubeuge, Hauts-de-France</p>
-        <p class="bio">Journaliste virtuelle. Je partage avec vous des actualités diverses sur les incivilités en France et je prône pour que mon pays resiste aux tarés qui veulent nous nuire 🍻🥓</p>
-        <a href="mailto:contact@tonprojet.com" class="cta-btn">🔥 Abonnez-vous</a>
+        <div class="editor-toolbar-body">
+            <div class="editor-actions">
+                <button class="editor-btn editor-btn-primary" id="toggleEditMode">Activer le mode édition</button>
+                <button class="editor-btn editor-btn-secondary" id="exportHtmlBtn">Exporter le HTML</button>
+                <button class="editor-btn editor-btn-success" id="copyHtmlBtn">Copier le HTML</button>
+                <button class="editor-btn editor-btn-danger" id="resetHintsBtn">Désactiver l'édition</button>
+            </div>
+
+            <div class="editor-legend">
+                <span><i class="editor-dot" style="background: var(--editor-text);"></i> Texte modifiable</span>
+                <span><i class="editor-dot" style="background: var(--editor-image);"></i> Image + alt</span>
+                <span><i class="editor-dot" style="background: var(--editor-bg);"></i> Fond remplaçable</span>
+                <span><i class="editor-dot" style="background: var(--editor-link);"></i> Lien mailto modifiable</span>
+                <span><i class="editor-dot" style="background: var(--editor-title);"></i> Titre document modifiable</span>
+            </div>
+
+            <textarea class="editor-output" id="editorOutput" readonly placeholder="Le HTML exporté apparaîtra ici..."></textarea>
+
+            <div class="editor-status" id="editorStatus"></div>
+
+            <p class="editor-help">
+                Astuce : clique sur le bouton d’abonnement pour changer le mailto, sur une image pour changer son URL et son alt, et sur le badge de titre pour changer le titre de l’onglet.
+            </p>
+        </div>
+    </div>
+
+    <header id="heroHeader">
+        <div class="title-wrapper-editable" id="documentTitleBadge" data-edit-type="document-title" data-edit-label="Modifier le titre de l'onglet" style="position:absolute; top:20px; left:20px; background:rgba(255,255,255,0.08); padding:10px 14px; border-radius:999px; font-size:0.85rem; font-weight:700;">
+            Titre onglet : <span id="documentTitleText">Ambre | Partage d'actualités sur la situation en France</span>
+        </div>
+
+        <div class="avatar-container image-wrapper-editable" data-edit-type="image" data-edit-label="Changer avatar">
+            <img
+                src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=500"
+                alt="Ambre IA"
+                id="avatarImage"
+                data-edit-type="image"
+                data-edit-label="Image avatar"
+            />
+        </div>
+
+        <h1 data-edit-type="text" data-edit-label="Nom principal">Ambre <span>• 59</span></h1>
+        <p class="location" data-edit-type="text" data-edit-label="Localisation">📍 Maubeuge, Hauts-de-France</p>
+        <p class="bio" data-edit-type="text" data-edit-label="Biographie">
+            Journaliste virtuelle. Je partage avec vous des actualités diverses sur les incivilités en France et je prône pour que mon pays resiste aux tarés qui veulent nous nuire 🍻🥓
+        </p>
+
+        <div class="link-wrapper-editable" data-edit-type="link" data-edit-label="Changer mailto">
+            <a
+                href="mailto:contact@tonprojet.com"
+                class="cta-btn"
+                id="subscribeLink"
+                data-edit-type="link"
+                data-edit-label="Texte bouton / lien mailto"
+            >🔥 Abonnez-vous</a>
+        </div>
     </header>
 
     <section class="feed-section">
-        <h2>Zapping</h2>
+        <h2 data-edit-type="text" data-edit-label="Titre section">Zapping</h2>
+
         <div class="grid">
-            <!-- Post 1 -->
             <div class="post">
-                <img src="https://images.unsplash.com/photo-1566633806327-68e152aaf26d?q=80&w=500" alt="Bière 0%">
+                <div class="image-wrapper-editable" data-edit-type="image" data-edit-label="Image post 1">
+                    <img
+                        src="https://images.unsplash.com/photo-1566633806327-68e152aaf26d?q=80&w=500"
+                        alt="Bière 0%"
+                        data-edit-type="image"
+                        data-edit-label="Image article 1"
+                    />
+                </div>
                 <div class="post-content">
-                    <span class="post-tag">🍺 Sujets à déveloper</span>
-                    <div class="post-title">Parlons-en</div>
-                    <p class="post-stats">❤️ 4,231 • 💬 248</p>
+                    <span class="post-tag" data-edit-type="text" data-edit-label="Tag post 1">🍺 Sujets à déveloper</span>
+                    <div class="post-title" data-edit-type="text" data-edit-label="Titre post 1">Parlons-en</div>
+                    <p class="post-stats" data-edit-type="text" data-edit-label="Statistiques post 1">❤️ 4,231 • 💬 248</p>
                 </div>
             </div>
-            <!-- Post 2 -->
+
             <div class="post">
-                <img src="https://images.unsplash.com/photo-1600952841320-db92ec4047ca?q=80&w=500" alt="Chips Bacon">
+                <div class="image-wrapper-editable" data-edit-type="image" data-edit-label="Image post 2">
+                    <img
+                        src="https://images.unsplash.com/photo-1600952841320-db92ec4047ca?q=80&w=500"
+                        alt="Chips Bacon"
+                        data-edit-type="image"
+                        data-edit-label="Image article 2"
+                    />
+                </div>
                 <div class="post-content">
-                    <span class="post-tag">🥓 Que dit la loi ?</span>
-                    <div class="post-title">Ce que vous ne devez pas faire en cas de danger</div>
-                    <p class="post-stats">❤️ 5,892 • 💬 412</p>
+                    <span class="post-tag" data-edit-type="text" data-edit-label="Tag post 2">🥓 Que dit la loi ?</span>
+                    <div class="post-title" data-edit-type="text" data-edit-label="Titre post 2">Ce que vous ne devez pas faire en cas de danger</div>
+                    <p class="post-stats" data-edit-type="text" data-edit-label="Statistiques post 2">❤️ 5,892 • 💬 412</p>
                 </div>
             </div>
-            <!-- Post 3 -->
+
             <div class="post">
-                <img src="https://images.unsplash.com/photo-1543007630-9710e4a00a20?q=80&w=500" alt="Apéro Valenciennes">
+                <div class="image-wrapper-editable" data-edit-type="image" data-edit-label="Image post 3">
+                    <img
+                        src="https://images.unsplash.com/photo-1543007630-9710e4a00a20?q=80&w=500"
+                        alt="Apéro Valenciennes"
+                        data-edit-type="image"
+                        data-edit-label="Image article 3"
+                    />
+                </div>
                 <div class="post-content">
-                    <span class="post-tag">📸 En Direct de la France</span>
-                    <div class="post-title">Divers entrevues</div>
-                    <p class="post-stats">❤️ 7,105 • 💬 619</p>
+                    <span class="post-tag" data-edit-type="text" data-edit-label="Tag post 3">📸 En Direct de la France</span>
+                    <div class="post-title" data-edit-type="text" data-edit-label="Titre post 3">Divers entrevues</div>
+                    <p class="post-stats" data-edit-type="text" data-edit-label="Statistiques post 3">❤️ 7,105 • 💬 619</p>
                 </div>
             </div>
         </div>
     </section>
 
     <footer>
-        <p>&copy; 2026 Ambre_59 - Influenceuse Virtuelle Expérimentale. Tous droits réservés.</p>
+        <p data-edit-type="text" data-edit-label="Texte footer">&copy; 2026 Ambre_59 - Influenceuse Virtuelle Expérimentale. Tous droits réservés.</p>
     </footer>
 
+    <script>
+        (function () {
+            const body = document.body;
+            const toggleBtn = document.getElementById('toggleEditMode');
+            const exportBtn = document.getElementById('exportHtmlBtn');
+            const copyBtn = document.getElementById('copyHtmlBtn');
+            const resetBtn = document.getElementById('resetHintsBtn');
+            const output = document.getElementById('editorOutput');
+            const status = document.getElementById('editorStatus');
+            const heroHeader = document.getElementById('heroHeader');
+            const subscribeLink = document.getElementById('subscribeLink');
+            const documentTitleBadge = document.getElementById('documentTitleBadge');
+            const documentTitleText = document.getElementById('documentTitleText');
+
+            let editMode = false;
+
+            function setStatus(message) {
+                status.textContent = message || '';
+            }
+
+            function setTextEditable(state) {
+                document.querySelectorAll('[data-edit-type="text"]').forEach(el => {
+                    if (state) {
+                        el.setAttribute('contenteditable', 'plaintext-only');
+                        el.classList.add('editable-zone');
+                    } else {
+                        el.setAttribute('contenteditable', 'false');
+                        el.classList.remove('editable-zone');
+                    }
+                });
+            }
+
+            function updateToggleButton() {
+                toggleBtn.textContent = editMode ? 'Désactiver le mode édition' : 'Activer le mode édition';
+            }
+
+            function toggleEditMode() {
+                editMode = !editMode;
+                body.classList.toggle('edit-mode', editMode);
+                setTextEditable(editMode);
+                updateToggleButton();
+                setStatus(editMode ? 'Mode édition activé.' : 'Mode édition désactivé.');
+            }
+
+            function isValidImageUrl(value) {
+                return /^https?:\/\/.+/i.test(value) || /^\.{0,2}\//.test(value) || /^data:image\//i.test(value);
+            }
+
+            function promptImageReplacement(img) {
+                if (!editMode) return;
+
+                const currentSrc = img.getAttribute('src') || '';
+                const nextSrc = window.prompt('Nouvelle URL de l’image :', currentSrc);
+                if (nextSrc && isValidImageUrl(nextSrc.trim())) {
+                    img.src = nextSrc.trim();
+                    img.setAttribute('src', nextSrc.trim());
+                }
+
+                const currentAlt = img.getAttribute('alt') || '';
+                const nextAlt = window.prompt('Nouveau texte alt de l’image :', currentAlt);
+                if (nextAlt !== null) {
+                    img.alt = nextAlt;
+                    img.setAttribute('alt', nextAlt);
+                }
+
+                setStatus('Image mise à jour.');
+            }
+
+            function promptBackgroundReplacement(element) {
+                if (!editMode) return;
+
+                const computed = getComputedStyle(element).backgroundImage;
+                const currentMatch = computed.match(/url\(["']?(.*?)["']?\)/i);
+                const currentUrl = currentMatch ? currentMatch[1] : '';
+                const next = window.prompt('Nouvelle URL du fond :', currentUrl);
+
+                if (next && isValidImageUrl(next.trim())) {
+                    element.style.background =
+                        `linear-gradient(rgba(0,0,0,0.6), rgba(18,18,18,1)), url("${next.trim()}") center/cover`;
+                    element.dataset.customBackground = next.trim();
+                    setStatus('Fond du header mis à jour.');
+                }
+            }
+
+            function promptMailtoReplacement(link) {
+                if (!editMode) return;
+
+                const currentHref = link.getAttribute('href') || '';
+                const currentEmail = currentHref.replace(/^mailto:/i, '');
+                const nextEmail = window.prompt('Nouvelle adresse email du bouton :', currentEmail);
+
+                if (nextEmail && nextEmail.trim()) {
+                    link.href = 'mailto:' + nextEmail.trim();
+                    link.setAttribute('href', 'mailto:' + nextEmail.trim());
+                    setStatus('Lien mailto mis à jour.');
+                }
+            }
+
+            function promptDocumentTitleReplacement() {
+                if (!editMode) return;
+
+                const current = document.title;
+                const next = window.prompt('Nouveau titre du document / onglet :', current);
+
+                if (next && next.trim()) {
+                    document.title = next.trim();
+                    documentTitleText.textContent = next.trim();
+                    const titleTag = document.querySelector('title');
+                    if (titleTag) {
+                        titleTag.textContent = next.trim();
+                    }
+                    setStatus('Titre du document mis à jour.');
+                }
+            }
+
+            function bindImageEditors() {
+                document.querySelectorAll('img[data-edit-type="image"]').forEach(img => {
+                    img.addEventListener('click', function (e) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        promptImageReplacement(img);
+                    });
+                });
+            }
+
+            function bindBackgroundEditor() {
+                heroHeader.classList.add('background-wrapper-editable');
+                heroHeader.setAttribute('data-edit-type', 'background');
+                heroHeader.setAttribute('data-edit-label', 'Fond du header');
+
+                heroHeader.addEventListener('click', function (e) {
+                    if (!editMode) return;
+                    if (e.target.closest('img')) return;
+                    if (e.target.closest('#documentTitleBadge')) return;
+                    if (e.target.closest('#subscribeLink')) return;
+                    promptBackgroundReplacement(heroHeader);
+                });
+            }
+
+            function bindMailtoEditor() {
+                subscribeLink.addEventListener('click', function (e) {
+                    if (!editMode) return;
+                    e.preventDefault();
+                    e.stopPropagation();
+                    promptMailtoReplacement(subscribeLink);
+                });
+            }
+
+            function bindTitleEditor() {
+                documentTitleBadge.addEventListener('click', function (e) {
+                    if (!editMode) return;
+                    e.preventDefault();
+                    e.stopPropagation();
+                    promptDocumentTitleReplacement();
+                });
+            }
+
+            function buildCleanHtml() {
+                const clone = document.documentElement.cloneNode(true);
+
+                clone.querySelectorAll('.editor-toolbar').forEach(el => el.remove());
+
+                clone.querySelectorAll('[contenteditable]').forEach(el => {
+                    el.removeAttribute('contenteditable');
+                });
+
+                clone.querySelectorAll('.editable-zone').forEach(el => {
+                    el.classList.remove('editable-zone');
+                });
+
+                clone.querySelectorAll('[data-edit-type], [data-edit-label]').forEach(el => {
+                    el.removeAttribute('data-edit-type');
+                    el.removeAttribute('data-edit-label');
+                });
+
+                clone.querySelectorAll('.image-wrapper-editable, .background-wrapper-editable, .link-wrapper-editable, .title-wrapper-editable').forEach(el => {
+                    el.classList.remove('image-wrapper-editable', 'background-wrapper-editable', 'link-wrapper-editable', 'title-wrapper-editable');
+                });
+
+                const badge = clone.querySelector('#documentTitleBadge');
+                if (badge) badge.remove();
+
+                const scripts = clone.querySelectorAll('script');
+                if (scripts.length) {
+                    scripts[scripts.length - 1].remove();
+                }
+
+                clone.body.classList.remove('edit-mode');
+
+                return '<!DOCTYPE html>\n' + clone.outerHTML;
+            }
+
+            function exportHtml() {
+                const finalHtml = buildCleanHtml();
+                output.value = finalHtml;
+                output.focus();
+                output.select();
+                setStatus('HTML exporté dans la zone de texte.');
+            }
+
+            async function copyHtml() {
+                const finalHtml = buildCleanHtml();
+                output.value = finalHtml;
+
+                try {
+                    await navigator.clipboard.writeText(finalHtml);
+                    setStatus('HTML copié dans le presse-papiers.');
+                } catch (error) {
+                    output.focus();
+                    output.select();
+                    setStatus('Copie automatique refusée, le HTML est sélectionné manuellement.');
+                }
+            }
+
+            function resetViewOnly() {
+                body.classList.remove('edit-mode');
+                editMode = false;
+                setTextEditable(false);
+                updateToggleButton();
+                setStatus('Mode édition désactivé.');
+            }
+
+            toggleBtn.addEventListener('click', toggleEditMode);
+            exportBtn.addEventListener('click', exportHtml);
+            copyBtn.addEventListener('click', copyHtml);
+            resetBtn.addEventListener('click', resetViewOnly);
+
+            setTextEditable(false);
+            bindImageEditors();
+            bindBackgroundEditor();
+            bindMailtoEditor();
+            bindTitleEditor();
+            updateToggleButton();
+            setStatus('Prêt.');
+        })();
+    </script>
 </body>
 </html>
